@@ -19,21 +19,45 @@ int columns = int.Parse(Console.ReadLine()!);
 
 int[,] array = GetArray(rows, columns, 0, 10);
 PrintArray(array);
+PrintArray(SortArray(array));
 
-
-int[,] GetArray(int m, int n, int minValue, int maxValue)
-
+int[,] GetArray(int rows, int columns, int minValue, int maxValue)
 {
-    int[,] result = new int[m, n];
-    for (int i = 0; i < m; i++)
+    int[,] result = new int[rows, columns];
+    for (int i = 0; i < rows; i++)
     {
-        for (int j = 0; j < n; j++)
+        for (int j = 0; j < columns; j++)
         {
             result[i, j] = new Random().Next(minValue, maxValue + 1);
         }
     }
     return result;
 }
+
+ int [,] SortArray(int[,] arr)
+{
+for (int i = 0; i < arr.GetLength(0); i++)
+  {  
+    int temp;
+    for (int j = 0; j < arr.GetLength(1); j++)
+    {
+        for (int k=j+1;k < arr.GetLength(1); k++)
+        {
+            if (arr[i,j] < arr[i,k])
+            {
+                temp=arr[i,j];
+                arr[i,j]=arr[i,k];
+                arr[i,k]=temp;
+            }
+        }   
+    }
+   Console.WriteLine();
+  }
+  return arr;
+}
+
+
+
 
 void PrintArray(int[,] inArray)
 {
